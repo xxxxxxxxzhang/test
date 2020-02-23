@@ -1,38 +1,27 @@
-language: node_js
-# nodejs版本
-node_js: 
-    - '6'
+sudo: required
 
-# Travis-CI Caching
-cache:
-  directories:
-    - node_modules
+language: sh
 
+before_install:
+    - sudo apt-get update -q
+    - export scversion="stable" # or "v0.4.7", or "latest"
+    - wget "https://storage.googleapis.com/shellcheck/shellcheck-${scversion}.linux.x86_64.tar.xz"
+    - tar --xz -xvf shellcheck-"${scversion}".linux.x86_64.tar.xz
+    - sudo cp shellcheck-"${scversion}"/shellcheck /usr/bin/
+    - /usr/bin/shellcheck --version
 
-# S: Build Lifecycle
-install:
-  - npm install
-
-before_script:
-
-# 无其他依赖项所以执行npm run build 构建就行了
 script:
-  - npm run build
+  - bash test.sh
 
 after_script:
-  - cd ./dist
-  - git init
-  - git config user.name "${U_NAME}"
-  - git config user.email "${U_EMAIL}"
-  - git add .
-  - git commit -m "Update tools"
-  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:${P_BRANCH}
-# E: Build LifeCycle
+  - /usr/bin/shellcheck test.sh
 
-branches:
-  only:
-    - master
-env:
- global:
-   # 我将其添加到了travis-ci的环境变量中
-   #- GH_REF: github.com/yimogit/metools.git 
+after_failure:
+  - id
+  - pwd
+  - df -h
+  - cat error.log
+
+notifications:
+  email:
+    on_success: never
