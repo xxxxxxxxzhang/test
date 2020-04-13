@@ -37,7 +37,7 @@ def login_add_user_changelogo(host):
                     'confirm_password': '111111', 'role': 'author',
                     'email': ''}
     response=session.post(host + '/admin/new-user', data=user_payload)
-    print('response_code', response.status_code)
+    
     change_html_doc = session.get(host + '/admin/login').content.decode('utf-8')
     change_selector = html.fromstring(change_html_doc)
 

