@@ -55,7 +55,7 @@ def login_add_user_changelogo(host):
                       }
     check_mark = session.post(host + '/admin/settings', data=change_payload)
     if check_mark == 200 :
-      print("Poc Success!")
+      print("Config Success!")
     
 
 if __name__ == '__main__':

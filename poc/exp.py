@@ -63,7 +63,7 @@ def exp(host, token, cookie_b):
     if response.status_code == 200:
         print("Poc Success!")
         
-    print('response£º', response.text)
+    print('response:', response.text)
 
 
 if __name__ == '__main__':
