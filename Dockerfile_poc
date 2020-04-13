@@ -9,9 +9,5 @@ RUN apt-get update --fix-missing && apt-get install -y\
   python3 \
   python3-pip \
   firefox
-RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple requests selenium lxml
-RUN tar -xvzf /opt/poc/geckodriver-v0.26.0-linux64.tar.gz \
-  chmod +x geckodriver \
-  cp geckodriver /usr/local/bin \
-  firefox --version \
+RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple requests selenium lxml 
 CMD bash /opt/poc/poc.sh

@@ -11,7 +11,8 @@ def config(host):
         ('language', 'zh_CN'),
     )
     data_reg = {'timezone': 'Asia', 'password': '111111', 'install': ''}
-    requests.post(host + '/install.php', params=params, data=data_reg, verify=False)
+    re = requests.post(host + '/install.php', params=params, data=data_reg, verify=False)
+    print("add user status",re.status_code)
 
 
 def login_add_user_changelogo(host):
