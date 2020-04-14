@@ -56,7 +56,7 @@ def login_add_user_changelogo(host):
                       }
     check_mark = session.post(host + '/admin/settings', data=change_payload)
     print("Config Success?",check_mark.status_code) 
-    if check_mark == 200 :
+    if check_mark.status_code == 200:
       print("Config Success!")
     else:
          print("Config failed!")    
