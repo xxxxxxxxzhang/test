@@ -2,7 +2,7 @@
 
 IF_DELETE_INSTALL_FILE=1
 
-INSTALL_FILE="1.txt"
+INSTALL_FILE="/usr/share/nginx/html/install.php"
 
 if [ ${IF_DELETE_INSTALL_FILE} == 1 ];
 then
