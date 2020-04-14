@@ -8,5 +8,5 @@ RUN apt-get update && apt-get install -y \
   curl \
   python3 \
   python3-pip 
-RUN pip3 install -r requirements_config.txt
+RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple requests lxml
 CMD bash /opt/data/config.sh
