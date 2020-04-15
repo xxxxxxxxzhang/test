@@ -43,14 +43,14 @@ def login_add_user_changelogo(host):
     change_selector = html.fromstring(change_html_doc)
 
     change_csrf_token = change_selector.xpath('//*[@id="jstokenCSRF"]/@value')[0]
-    change_payload = {'save': '', 'tokenCSRF': change_csrf_token, 'title':'hefeixin', 'slogan': 'wlecome to hefeixin',
-                      'description': 'hello', 'Copyright': 'Copyright ? 2020', 'itemsPerPage': '6',
+    change_payload = {'save': '', 'tokenCSRF': change_csrf_token, 'title':'和飞信', 'slogan': '欢迎来到和飞信论坛',
+                      'description': '您好', 'Copyright': 'Copyright ? 2020', 'itemsPerPage': '6',
                       'orderBy': 'date', 'homepageTMP': '', 'pageNotFoundTMP': '', 'emailFrom': '',
                       'autosaveInterval': '2','url': host,'markdownParser': 'true',
                       'uriPage': '', 'uriTag': '/tag/', 'uriCategory': '/category/', 'extremeFriendly': 'true',
                       'titleFormatHomepage': '', 'titleFormatPages': 'titleFormatCategory', '': '',
                       'titleFormatTag': '', 'twitter': 'https://feixin.10086.cn/',
-                      'facebook': 'https://www.facebook.com/pages/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E9%A3%9E%E4%BF%A1/104235166315815',
+                      'facebook': '',
                       'thumbnailHeight': '400', 'thumbnailQuality': '100', 'language': 'zh_CN',
                       'timezone': 'Asia%2FShanghai', 'locale': 'zh_CN', 'dateFormat': 'F /C Y'
                       }
