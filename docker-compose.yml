@@ -14,6 +14,8 @@ services:
      build:
        context: .
        dockerfile: Dockerfile_config
+     environment: 
+       - PYTHONIOENCODING=utf-8
      container_name: config-app
      depends_on:
        - web
