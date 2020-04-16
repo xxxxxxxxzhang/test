@@ -3,8 +3,6 @@ FROM ubuntu:18.04
 COPY config.sh /opt/data/config.sh
 COPY filldata.py /opt/data/filldata.py
 COPY requirements_config.txt /opt/data/requirements_config.txt
-RUN sed -i s@/archive.ubuntu.com/@/mirrors.tuna.tsinghua.edu.cn/@g /etc/apt/sources.list
-RUN apt-get clean
 RUN apt-get update && apt-get install -y \
   curl \
   python3 \
