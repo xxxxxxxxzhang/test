@@ -43,8 +43,8 @@ def login_add_user_changelogo(host):
     change_selector = html.fromstring(change_html_doc)
 
     change_csrf_token = change_selector.xpath('//*[@id="jstokenCSRF"]/@value')[0]
-    change_payload = {'save': '', 'tokenCSRF': change_csrf_token, 'title':'ºÍ·ÉĞÅ', 'slogan': '»¶Ó­À´µ½ºÍ·ÉĞÅÂÛÌ³',
-                      'description': 'ÄúºÃ', 'Copyright': 'Copyright ? 2020', 'itemsPerPage': '6',
+    change_payload = {'save': '', 'tokenCSRF': change_csrf_token, 'title':'å’Œé£ä¿¡', 'slogan': 'æ¬¢è¿æ¥åˆ°å’Œé£ä¿¡è®ºå›',
+                      'description': 'æ‚¨å¥½', 'Copyright': 'Copyright ? 2020', 'itemsPerPage': '6',
                       'orderBy': 'date', 'homepageTMP': '', 'pageNotFoundTMP': '', 'emailFrom': '',
                       'autosaveInterval': '2','url': host,'markdownParser': 'true',
                       'uriPage': '', 'uriTag': '/tag/', 'uriCategory': '/category/', 'extremeFriendly': 'true',
