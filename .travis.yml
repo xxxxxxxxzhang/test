@@ -17,8 +17,9 @@ addons:
 
 install:
     - sed -i 's/[0-9]*[1-9][0-9]*:80/'${PORT}':80/g' docker-compose.yml
-    - docker-compose up 
-    
+    - docker-compose up
+    - sleep ${SLEEP_TIME} 
+    - install: travis_wait 30 mvn install
 script:
     - sudo bash check_config.sh
     - sudo bash check_poc.sh
