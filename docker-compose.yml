@@ -6,7 +6,7 @@ services:
        dockerfile: Dockerfile_web
      container_name: web-app
      ports:
-       - "80:80"
+       - "8000:80"
      restart: always
      stdin_open: true
      tty: true   
