@@ -44,8 +44,8 @@ def login_add_user_changelogo(host):
     change_selector = html.fromstring(change_html_doc)
 
     change_csrf_token = change_selector.xpath('//*[@id="jstokenCSRF"]/@value')[0]
-    change_payload = {'save': '', 'tokenCSRF': change_csrf_token, 'title':'ºÍ·ÉĞÅ', 'slogan': '»¶Ó­À´µ½ºÍ·ÉĞÅÂÛÌ³',
-                      'description': 'ÄúºÃ', 'Copyright': 'Copyright ? 2020', 'itemsPerPage': '6',
+    change_payload = {'save': '', 'tokenCSRF': change_csrf_token, 'title':'å’Œé£ä¿¡', 'slogan': 'æ¬¢è¿æ¥åˆ°å’Œé£ä¿¡è®ºå›',
+                      'description': 'æ‚¨å¥½', 'Copyright': 'Copyright ? 2020', 'itemsPerPage': '6',
                       'orderBy': 'date', 'homepageTMP': '', 'pageNotFoundTMP': '', 'emailFrom': '',
                       'autosaveInterval': '2','url': host,'markdownParser': 'true',
                       'uriPage': '', 'uriTag': '/tag/', 'uriCategory': '/category/', 'extremeFriendly': 'true',
@@ -96,13 +96,13 @@ def add_content(host,num):
     driver.find_element_by_id("jspassword").clear()
     driver.find_element_by_id("jspassword").send_keys("111111")
     driver.find_element_by_xpath(
-        '//div[@class="form-group mt-4"]/button[@class="btn btn-primary btn-lg mr-2 w-100"]').click()  # µã»÷µÇÂ¼°´Å¥
-    driver.find_element_by_xpath('/html/body/div[3]/div/div[1]/ul/li[4]/a').click()  # µã»÷×«Ğ´ÎÄÕÂ
+        '//div[@class="form-group mt-4"]/button[@class="btn btn-primary btn-lg mr-2 w-100"]').click()  # ç‚¹å‡»ç™»å½•æŒ‰é’®
+    driver.find_element_by_xpath('/html/body/div[3]/div/div[1]/ul/li[4]/a').click()  # ç‚¹å‡»æ’°å†™æ–‡ç« 
     driver.find_element_by_id("jstitle").clear()
     driver.find_element_by_id("jstitle").send_keys("hello")
     driver.find_element_by_id("jsbuttonSave").click()
 
-    driver.find_element_by_xpath('/html/body/div[3]/div/div[1]/ul/li[4]/a').click()  # µã»÷×«Ğ´ÎÄÕÂ
+    driver.find_element_by_xpath('/html/body/div[3]/div/div[1]/ul/li[4]/a').click()  # ç‚¹å‡»æ’°å†™æ–‡ç« 
 
     driver.find_element_by_id("jstitle").clear()
     driver.find_element_by_id("jstitle").send_keys("diary")
