@@ -84,7 +84,7 @@ def login_add_user(host,num):
     if re.status_code == 200:
         print("Config Success!")
 
-def add_content(host,num):
+def add_content(host):
 
     firefox_opt = webdriver.FirefoxOptions()
     firefox_opt.add_argument("--headless")
