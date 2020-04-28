@@ -56,7 +56,6 @@ def login_add_user_changelogo(host):
                       'timezone': 'Asia%2FShanghai', 'locale': 'zh_CN', 'dateFormat': 'F /C Y'
                       }
     check_mark = session.post(host + '/admin/settings', data=change_payload)
-    print("Config Success?",check_mark.status_code) 
     if check_mark.status_code == 200:
       print("Config Success!")
     else:
