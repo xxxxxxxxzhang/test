@@ -40,26 +40,10 @@ def login_add_user_changelogo(host):
                     'email': ''}
     response=session.post(host + '/admin/new-user', data=user_payload)
     
-    change_html_doc = session.get(host + '/admin/login').content.decode('utf-8')
-    change_selector = html.fromstring(change_html_doc)
-
-    change_csrf_token = change_selector.xpath('//*[@id="jstokenCSRF"]/@value')[0]
-    change_payload = {'save': '', 'tokenCSRF': change_csrf_token, 'title':'和飞信', 'slogan': '欢迎来到和飞信论坛',
-                      'description': '您好', 'Copyright': 'Copyright ? 2020', 'itemsPerPage': '6',
-                      'orderBy': 'date', 'homepageTMP': '', 'pageNotFoundTMP': '', 'emailFrom': '',
-                      'autosaveInterval': '2','url': host,'markdownParser': 'true',
-                      'uriPage': '', 'uriTag': '/tag/', 'uriCategory': '/category/', 'extremeFriendly': 'true',
-                      'titleFormatHomepage': '', 'titleFormatPages': 'titleFormatCategory', '': '',
-                      'titleFormatTag': '', 'twitter': 'https://feixin.10086.cn/',
-                      'facebook': '',
-                      'thumbnailHeight': '400', 'thumbnailQuality': '100', 'language': 'zh_CN',
-                      'timezone': 'Asia%2FShanghai', 'locale': 'zh_CN', 'dateFormat': 'F /C Y'
-                      }
-    check_mark = session.post(host + '/admin/settings', data=change_payload)
-    if check_mark.status_code == 200:
+    if response.status_code == 200:
       print("Config Success!")
     else:
-         print("Config failed!")    
+      print("Config failed!")    
 def login_add_user(host,num):
     session = requests.Session()
     html_doc = session.get(host + '/admin/login').content.decode('utf-8')
@@ -88,20 +72,20 @@ def add_content(host):
     firefox_opt = webdriver.FirefoxOptions()
     firefox_opt.add_argument("--headless")
     driver = webdriver.Firefox(firefox_options=firefox_opt)
-    url = host + '/admin'
+    url =  host+'/admin'
     driver.get(url)
     driver.find_element_by_id("jsusername").clear()
-    driver.find_element_by_id("jsusername").send_keys("cuc")
+    driver.find_element_by_id("jsusername").send_keys("admin")
     driver.find_element_by_id("jspassword").clear()
     driver.find_element_by_id("jspassword").send_keys("111111")
     driver.find_element_by_xpath(
-        '//div[@class="form-group mt-4"]/button[@class="btn btn-primary btn-lg mr-2 w-100"]').click()  # 点击登录按钮
-    driver.find_element_by_xpath('/html/body/div[3]/div/div[1]/ul/li[4]/a').click()  # 点击撰写文章
+        '//div[@class="form-group mt-4"]/button[@class="btn btn-primary btn-lg mr-2 w-100"]').click()  
+    driver.find_element_by_xpath('/html/body/div[3]/div/div[1]/ul/li[4]/a').click()  
     driver.find_element_by_id("jstitle").clear()
     driver.find_element_by_id("jstitle").send_keys("hello")
     driver.find_element_by_id("jsbuttonSave").click()
 
-    driver.find_element_by_xpath('/html/body/div[3]/div/div[1]/ul/li[4]/a').click()  # 点击撰写文章
+    driver.find_element_by_xpath('/html/body/div[3]/div/div[1]/ul/li[4]/a').click() 
 
     driver.find_element_by_id("jstitle").clear()
     driver.find_element_by_id("jstitle").send_keys("diary")
@@ -118,4 +102,4 @@ if __name__ == '__main__':
     for num in name:
         login_add_user(h, num)
     add_content(h)
-    print("fill date success!!!")
+    print("fill data success!!!")
