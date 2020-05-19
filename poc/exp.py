@@ -12,9 +12,6 @@ from selenium.webdriver.support import expected_conditions as EC
 def login(host):
     firefox_opt = webdriver.FirefoxOptions()
     firefox_opt.add_argument("--headless")
-    #firefox_binary = FirefoxBinary('/usr/local/bin/geckodriver')
-    
-    #driver = webdriver.Firefox(firefox_binary=firefox_binary)
     driver = webdriver.Firefox(firefox_options=firefox_opt)
     url = host + '/admin'
     driver.get(url)
@@ -37,7 +34,7 @@ def exp(host, token, cookie_b):
         'BLUDIT-KEY': cookie_b
     }
     headers = {
-        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:75.0) Gecko/20100101 Firefox/75.0',
+        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0',
         'Content-Type': 'multipart/form-data; boundary=--------327107347321150223463725464476',
         'Origin': host,
         'Referer': host + '/admin/new-content',
