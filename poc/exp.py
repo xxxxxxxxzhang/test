@@ -33,7 +33,7 @@ def login(host):
     user_agent = driver.execute_script("return navigator.userAgent;")
     return ctoken, cookie_b,user_agent
 
-def exp(host, token, cookie_b):
+def exp(host, token, cookie_b,user_agent):
     cookies = {
         'BLUDIT-KEY': cookie_b
     }
