@@ -1,4 +1,4 @@
-FROM bludit:3.9.2-base
+FROM registry.cn-hangzhou.aliyuncs.com/bludit/bludit-dve:3.9.2-base
 RUN yum -y install openssh-server
 
 RUN mkdir /var/run/sshd

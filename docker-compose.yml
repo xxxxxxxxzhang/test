@@ -3,8 +3,8 @@ services:
   web:
      build:
        context: .
-       dockerfile: Dockerfile_web
-     image: bludit:3.9.2-ssh
+       dockerfile: Dockerfile
+     #image: bludit:3.9.2-ssh
      container_name: bludit-3.9.2-web-app
      ports:
        - "8000:80"
