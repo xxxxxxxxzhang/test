@@ -1,22 +1,18 @@
 From zxinxin/bludit:3.9.2-base
-RUN yum install update -y 
-RUN yum install openssh-server -y 
+RUN yum -y install openssh-server
 
-#修改root用户密码
-#用以下命令修改密码时，密码中最好不要包含特殊字符，如"!"，否则可能会失败；
-RUN /bin/echo "root6666" | passwd --stdin root
+RUN mkdir /var/run/sshd
+RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ''
+RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -N ''
+RUN ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N ''
+RUN ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ''
 
-#生成密钥
-RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key \
-    && ssh-keygen -t rsa -f /etc/ssh/ssh_host_ecdsa_key \
-    && ssh-keygen -t rsa -f /etc/ssh/ssh_host_ed25519_key
-
-#修改配置信息
-RUN /bin/sed -i 's/.*session.*required.*pam_loginuid.so.*/session optional pam_loginuid.so/g' /etc/pam.d/sshd \
-    && /bin/sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config \
-    && /bin/sed -i "s/#UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config
-
+RUN echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+RUN echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config    
+RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+RUN /bin/echo 'root:admin'|chpasswd
+RUN /bin/sed -i 's/.session.required.pam_loginuid.so./session optional pam_loginuid.so/g' /etc/pam.d/sshd
+RUN /bin/echo -e "LANG="en_US.UTF-8"" > /etc/default/local
 
 EXPOSE 22
-
 CMD ["/usr/sbin/sshd","-D"]
