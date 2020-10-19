@@ -4,9 +4,11 @@ services:
      build:
        context: .
        dockerfile: Dockerfile_web
-     container_name: web-app
+     image: bludit:3.9.2-ssh
+     container_name: bludit-3.9.2-web-app
      ports:
        - "8000:80"
+       - "10003:22"
      restart: always
      stdin_open: true
      tty: true   
@@ -16,7 +18,7 @@ services:
        dockerfile: Dockerfile_config
      environment: 
        - PYTHONIOENCODING=utf-8
-     container_name: config-app
+     container_name: bludit-3.9.2-config-app
      depends_on:
        - web
        
@@ -24,7 +26,7 @@ services:
      build:
        context: .
        dockerfile: Dockerfile_poc
-     container_name: poc-app
+     container_name: bludit-3.9.2-poc-app
      depends_on:
        - web
        - config

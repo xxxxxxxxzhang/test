@@ -1,0 +1,1 @@
+@load ./detect_file_upload.zeek
