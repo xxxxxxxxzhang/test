@@ -1,4 +1,4 @@
-From bludit:3.9.2
+From zxinxin/bludit:3.9.2-base
 RUN yum install update -y 
 RUN yum install openssh-server -y 
 

@@ -2,32 +2,45 @@ version: "3"
 services:
   web:
      build:
-       context: .
-       dockerfile: Dockerfile_web
-     #image: bludit:3.9.2-ssh
+       context: ./web
+       dockerfile: Dockerfile
+     #image: bludit-ssh2:3.9.2
+     image: registry.cn-hangzhou.aliyuncs.com/bludit/bludit-dve:v2
      container_name: bludit-3.9.2-web-app
      ports:
        - "8000:80"
        - "10003:22"
      restart: always
      stdin_open: true
-     tty: true   
+     tty: true 
+     command: bash -c  "/usr/bin/supervisord -n -c /etc/supervisord.conf"  
   config:
      build:
-       context: .
-       dockerfile: Dockerfile_config
+       context: ./config
+       dockerfile: Dockerfile
      environment: 
        - PYTHONIOENCODING=utf-8
      container_name: bludit-3.9.2-config-app
      depends_on:
        - web
+     volumes:
+       - ./config:/opt/data/
        
   poc:
      build:
-       context: .
-       dockerfile: Dockerfile_poc
+       context: ./poc
+       dockerfile: Dockerfile
      container_name: bludit-3.9.2-poc-app
      depends_on:
        - web
        - config
-      
+     volumes:
+       - ./poc:/opt/poc/ 
+  zeek:
+    image: fixel/zeek:latest
+    container_name: zeek
+    network_mode: 'service:web'
+    volumes:
+      - ./ids/logs:/usr/local/zeek/logs
+      - ./ids/detect_upload_file_attack:/usr/local/zeek/share/zeek/policy/detect_upload_file_attack
+    command: -C -i eth0 policy/detect_upload_file_attack
