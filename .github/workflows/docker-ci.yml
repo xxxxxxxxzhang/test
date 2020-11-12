@@ -27,16 +27,8 @@ jobs:
 
       - name: Deploy DVE
         run: | 
-          docker-compose up -d mongo
-          sleep 3
-          docker exec -t rocketchat-3.4.2-db-app mongo --eval "printjson(rs.initiate())"
-          sleep 3
-          docker exec -t rocketchat-3.4.2-db-app mongo --eval "printjson(rs.initiate())"
-          sleep 3
           docker-compose up -d
-          docker-compose logs poc
-          docker images 
-      
+     
       - uses: actions/setup-node@v2.0.0
         with:
           node-version: '12'    
@@ -45,12 +37,21 @@ jobs:
         run: |
           bash ci/check_config.sh
           bash ci/check_poc.sh
-          bash ci/check_bot.sh
       - uses: actions/setup-node@v2.0.0
         with:
           node-version: '12'
       - run: |
           npm install
+       - name: Check Service Availability
+        run: |
+          sleep 100
+          npm init -f
+          npm i puppeteer
+          node ci/check_availability.js
+          git config --local user.email "972844082@qq.com"
+          git config --local user.name "xxxxxxxxzhang"
+          git add ci/screenshots/
+          git commit -m "CI push sreenshots back"
       - name: Recognize Exploit Traffic
         run: |
          cat ids/logs/notice.log
